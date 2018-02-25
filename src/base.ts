@@ -67,8 +67,9 @@ export default class Base {
    * @param name name of the interface
    */
   addInterface(name: string): this {
-    const intf = { name, export: true }
-    this.sourceFile.addInterface(intf)
+    const opts = { name, export: true }
+    const intf = this.sourceFile.addInterface(opts)
+    intf.setIsExported(true)
     return this
   }
 

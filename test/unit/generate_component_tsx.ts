@@ -40,4 +40,12 @@ class CodegenGenerateComponentTsxTest {
     const code = gen.toString()
     expect(code).to.contain(`render() {`)
   }
+
+  @test
+  'when class, contains knterfaces for state/props'() {
+    const gen = generateComponentTsx('MyDiv', true)
+    const code = gen.toString()
+    expect(code).to.contain(`export interface IProps`)
+    expect(code).to.contain(`export interface IState`)
+  }
 }
