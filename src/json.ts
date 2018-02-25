@@ -62,6 +62,16 @@ export default class Json {
   }
 
   /**
+   * Replaces the current state completely with an external JSON string
+   *
+   * @param source string with json contents
+   */
+  fromString(source: string): this {
+    this.file = JSON.parse(source)
+    return this
+  }
+
+  /**
    * Return pretty formatted JSON string
    */
   toString(): string {

@@ -77,7 +77,13 @@ export default class Base {
    */
   toString(): string {
     const sourceCode = this.sourceFile.getFullText()
-    const prettyCode = prettier.format(sourceCode, prettierSettings)
+    let prettyCode: string = ''
+    try {
+      prettyCode = prettier.format(sourceCode, prettierSettings)
+    } catch (error) {
+      // prettier is broken in combination with mock-fs :-(
+      prettyCode = sourceCode
+    }
     return prettyCode
   }
 

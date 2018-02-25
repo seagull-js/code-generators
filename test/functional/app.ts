@@ -19,7 +19,7 @@ class FunctionalTest extends Test {
   }
 
   @test
-  'can be write to folder'() {
+  'can be written to folder'() {
     const gen = new App('demo', '0.1.0')
     expect(gen).to.be.an('object')
     gen.toFolder('./tmp/demo')
