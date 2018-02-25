@@ -15,6 +15,8 @@ function generateClass(name: string): GenClass {
     bodyText: 'super(props)\n this.state = {}',
     parameters: [{ name: 'props', type: 'IProps' }],
   })
+  gen.addInterface('IProps')
+  gen.addInterface('IState')
   const docRender = `outputs the HTML of this Page`
   const bodyRender = `
     return (
