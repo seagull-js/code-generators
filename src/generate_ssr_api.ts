@@ -8,8 +8,9 @@ export default function generateSsrAPI(): Class {
     if (page && typeof page.componentDidMount === 'function'){
       await page.componentDidMount()
     }
-    const html = renderToString(layout({ children: appRouter.load() }))
-    return this.html(html.replace('<head>', \`<head><style>\${getStyles()}</style>\`))
+    const content = renderToString(appRouter.load())
+    const html = renderToString(layout({content}))
+    return this.html(html)
   `
   const opts = { path: '/*', method: 'GET', body }
   const gen = generateAPI('Frontent', opts)

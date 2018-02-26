@@ -43,6 +43,6 @@ class CodegenGenerateSsrApiTest {
     const gen = generateSsrApi()
     const code = gen.toString()
     expect(code).to.contain(`return this.html(`)
-    expect(code).to.contain(`renderToString(layout({ children: appRouter`)
+    expect(code).to.contain(`renderToString(`)
   }
 }
