@@ -1,11 +1,11 @@
 {
   "name": "@seagull/code-generators",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "description": "Scaffolding capabilities and AST transforms for seagull apps",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.js",
   "scripts": {
-    "build": "rm -rf dist && tsc",
+    "build": "rm -rf dist && tsc && cp -R media dist",
     "test": "NODE_ENV=test mocha --opts test/mocha.opts",
     "test:watch": "NODE_ENV=test mocha --opts test/mocha.opts --watch"
   },
