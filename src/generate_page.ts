@@ -9,13 +9,15 @@ export default function generatePage(name: string, options: IOptions): Class {
   gen.addDefaultImport('react', 'React', true)
   gen.addNamedImports('@seagull/core', ['Page'])
 
+  const path = options.path.startsWith('/') ? options.path : `/${options.path}`
+
   const docPath = `the url path this page will be mounted on`
   gen.addProp({
     doc: docPath,
     name: 'path',
     static: false,
     type: 'string',
-    value: `'${options.path}'`,
+    value: `'${path}'`,
   })
 
   const docRender = `outputs the HTML of this Page`

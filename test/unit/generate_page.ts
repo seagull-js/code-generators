@@ -27,7 +27,28 @@ class CodegenGeneratePageTest {
   }
 
   @test
-  'contains correct path setting as prop'() {
+  'contains corrent path as prop if not path is set'() {
+    const gen = generatePage('MyPage', { path: '' })
+    const code = gen.toString()
+    expect(code).to.contain(`path: string = '/'`)
+  }
+
+  @test
+  'contains corrent path as prop if only a slash is set as path'() {
+    const gen = generatePage('MyPage', { path: '/' })
+    const code = gen.toString()
+    expect(code).to.contain(`path: string = '/'`)
+  }
+
+  @test
+  'contains correct path as prop without a slash is set in front'() {
+    const gen = generatePage('MyPage', { path: 'something' })
+    const code = gen.toString()
+    expect(code).to.contain(`path: string = '/something'`)
+  }
+
+  @test
+  'contains correct path as prop if path is set with slash in front'() {
     const gen = generatePage('MyPage', { path: '/something' })
     const code = gen.toString()
     expect(code).to.contain(`path: string = '/something'`)
