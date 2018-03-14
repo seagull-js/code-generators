@@ -15,6 +15,24 @@ class CodegenGenerateApiTest {
   }
 
   @test
+  'can generate API with path as empty string'() {
+    const opts = { path: '' }
+    const gen = generateAPI('MyAPI', opts)
+    const code = gen.toString()
+    expect(code).to.contain(`static path: string = '/'`)
+    expect(code).to.contain(`static method: string = 'GET'`)
+  }
+
+  @test
+  'can generate API with path with a slash as string and automatic method addition'() {
+    const opts = { path: '/' }
+    const gen = generateAPI('MyAPI', opts)
+    const code = gen.toString()
+    expect(code).to.contain(`static path: string = '/'`)
+    expect(code).to.contain(`static method: string = 'GET'`)
+  }
+
+  @test
   'can generate API with path and automatic method addition'() {
     const opts = { path: '/hi' }
     const gen = generateAPI('MyAPI', opts)
@@ -30,6 +48,14 @@ class CodegenGenerateApiTest {
     const code = gen.toString()
     expect(code).to.contain(`static path: string = '/ho'`)
     expect(code).to.contain(`static method: string = 'POST'`)
+  }
+
+  @test
+  'can generate API with explicit method'() {
+    const opts = { method: 'GET' }
+    const gen = generateAPI('MyAPI', opts)
+    const code = gen.toString()
+    expect(code).to.contain(`static method: string = 'GET'`)
   }
 
   @test

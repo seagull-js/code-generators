@@ -1,3 +1,4 @@
+import { isString } from 'lodash'
 import Class from './class'
 
 export interface IOptions {
@@ -11,18 +12,21 @@ export default function generateAPI(name: string, options: IOptions): Class {
   const gen = new Class(name, 'API')
   gen.addNamedImports('@seagull/core', ['API', 'Request', 'Response'])
 
-  if (options.path) {
+  if (isString(options.path)) {
+    const path = options.path.startsWith('/')
+      ? options.path
+      : `/${options.path}`
     const docPath = `The URL path where this API will be located. Skip for private functions like cronjobs. Example: '/greetings/{name}'`
     gen.addProp({
       doc: docPath,
       name: 'path',
       static: true,
       type: 'string',
-      value: `'${options.path}'`,
+      value: `'${path}'`,
     })
   }
 
-  if (options.method || options.path) {
+  if (options.method || isString(options.path)) {
     const docMethod = `This is the HTTP method / verb for the API. Defaults to 'GET'`
     gen.addProp({
       doc: docMethod,
