@@ -8,6 +8,7 @@ export { default as App } from './app'
 export { default as generateAPI } from './generate_api'
 export { default as generateModel } from './generate_model'
 export { default as generatePage } from './generate_page'
+export { default as generateShrimp } from './generate_shrimp'
 
 // dedicated file generators
 export { default as generateComponentTsx } from './generate_component_tsx'
