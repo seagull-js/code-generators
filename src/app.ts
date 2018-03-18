@@ -4,6 +4,8 @@ import { join } from 'path'
 import * as shell from 'shelljs'
 import * as Gen from './index'
 
+shell.config.silent = true
+
 export default class App {
   dir: { [file: string]: string }
 
