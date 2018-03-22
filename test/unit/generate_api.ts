@@ -66,4 +66,20 @@ class CodegenGenerateApiTest {
     expect(code).to.contain(`static path: string = '/ha'`)
     expect(code).to.contain(`static cors: boolean = true`)
   }
+
+  @test
+  'can generate API with activated cache'() {
+    const opts = { path: '/ha', cache: 60 }
+    const gen = generateAPI('MyAPI', opts)
+    const code = gen.toString()
+    expect(code).to.contain(`static cache: number = 60`)
+  }
+
+  @test
+  'can generate API without cache'() {
+    const opts = { path: '/ha' }
+    const gen = generateAPI('MyAPI', opts)
+    const code = gen.toString()
+    expect(code).to.contain(`static cache: number = 0`)
+  }
 }

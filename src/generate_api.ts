@@ -6,6 +6,7 @@ export interface IOptions {
   method?: string
   cors?: boolean
   body?: string
+  cache?: number
 }
 
 export default function generateAPI(name: string, options: IOptions): Class {
@@ -47,6 +48,16 @@ export default function generateAPI(name: string, options: IOptions): Class {
       value: `${!!options.cors}`,
     })
   }
+
+  const cache = typeof options.cache === 'number' ? options.cache : 0
+  const docCache = `The duration in seconds this API will get cached`
+  gen.addProp({
+    doc: docCache,
+    name: 'cache',
+    static: true,
+    type: 'number',
+    value: cache.toString(),
+  })
 
   const docHandle = `This handle function executes your code. Return one of the following method invocations: 'text', 'json', 'redirect', 'missing', 'error'`
   gen.addMethod({
