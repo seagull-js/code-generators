@@ -21,6 +21,8 @@ export default function generatePackageJson(name: string, version): Json {
     '@types/react-router': '^4.0.15',
     '@types/react-router-config': '^1.0.4',
     '@types/react-router-dom': '^4.0.8',
+    'aws-sdk': '^2.104.0',
+    typescript: '^2.7.2',
   })
   return gen
 }
