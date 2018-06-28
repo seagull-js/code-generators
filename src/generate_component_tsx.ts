@@ -11,10 +11,6 @@ export default function(name: string, classic?: boolean): Gen {
 
 function generateClass(name: string): GenClass {
   const gen = new GenClass(name, 'React.Component<IProps, IState>', true)
-  gen.addConstructor({
-    bodyText: 'super(props)\n this.state = {}',
-    parameters: [{ name: 'props', type: 'IProps' }],
-  })
   gen.addInterface('IProps')
   gen.addInterface('IState')
   const docRender = `outputs the HTML of this Page`
